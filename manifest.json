@@ -1,0 +1,16 @@
+{
+	"name": "Neoseeker PM Notification",
+	"version": "1.0",
+	"description": "Gives you notifications when you receive a new PM on Neoseeker.",
+	"browser_action": {
+		"default_icon": "icon.png",
+		"popup": "popup.html"
+	},
+	"background_page": "background.html",
+	"permissions": [
+		"http://*.neoseeker.com/",
+		"notifications",
+		"background",
+		"tabs"
+	]
+}

@@ -1,0 +1,34 @@
+<script>
+function init() {
+	var t = setTimeout("init()",10000);
+	update_badge();
+	display_notification();
+}
+
+function update_badge() {
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "http://gta.neoseeker.com/api.json", true);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4) {
+			var pm_obj = JSON.parse(xhr.responseText);
+			if (pm_obj.total > 0) {
+				chrome.browserAction.setBadgeText({text:pm_obj.total});
+			}
+		}
+	}
+	xhr.send(null);
+}
+
+function display_notification() {
+	if (window.webkitNotifications.checkPermission() == 0) {
+		var notification = webkitNotifications.createNotification(
+		  'icon.png',  // icon url - can be relative
+		  'Hello!',  // notification title
+		  'Lorem ipsum...'  // notification body text
+		);
+		//notification.show();
+	}
+}
+
+init();
+</script>
